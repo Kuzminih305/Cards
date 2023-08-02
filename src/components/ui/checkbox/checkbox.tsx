@@ -9,14 +9,19 @@ import { Typography } from '../typography'
 import s from './checkbox.module.scss'
 
 export type CheckBoxProps = {
-  onChange?: (checked: boolean) => void
+  onValueChange?: (checked: boolean) => void
   disabled?: boolean
   checked?: boolean
   variant: 'default' | 'withText'
   label?: string
 }
 
-export const CheckboxDemo: FC<CheckBoxProps> = ({ disabled = false, checked, label, onChange }) => {
+export const CheckboxDemo: FC<CheckBoxProps> = ({
+  disabled = false,
+  checked,
+  label,
+  onValueChange,
+}) => {
   return (
     <div className={s.checkBoxBlock}>
       <Label.Root>
@@ -29,7 +34,7 @@ export const CheckboxDemo: FC<CheckBoxProps> = ({ disabled = false, checked, lab
             className={`${s.checkboxRoot} ${checked ? s.active : s.unActive}`}
             id="c1"
             checked={checked}
-            onCheckedChange={onChange}
+            onCheckedChange={onValueChange}
             disabled={disabled}
           >
             <Checkbox.Indicator className={s.checkboxIndicator}>
