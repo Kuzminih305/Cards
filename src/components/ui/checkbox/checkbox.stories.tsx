@@ -1,51 +1,35 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import { useState } from 'react'
 
-import { CheckboxDemo } from './'
+import { Meta, StoryObj } from '@storybook/react'
 
+import { Checkbox } from './checkbox'
 const meta = {
   title: 'Components/Checkbox',
-  component: CheckboxDemo,
+  component: Checkbox,
   tags: ['autodocs'],
-  argTypes: {
-    variant: {
-      options: ['default', 'withText'],
-      control: { type: 'radio' },
-    },
-    onValueChange: { action: 'checked changes' },
-  },
-} satisfies Meta<typeof CheckboxDemo>
+} satisfies Meta<typeof Checkbox>
 
 export default meta
+
 type Story = StoryObj<typeof meta>
-
-export const ShowCheckbox: Story = {
+export const Uncontrolled: Story = {
   args: {
-    variant: 'default',
-    checked: true,
+    label: 'Click here',
+    disabled: false,
   },
 }
 
-export const DisabledCheckbox: Story = {
-  args: {
-    checked: true,
-    disabled: true,
-    variant: 'default',
-  },
-}
+export const Controlled: Story = {
+  render: args => {
+    const [checked, setChecked] = useState(false)
 
-export const CheckboxWithText: Story = {
-  args: {
-    checked: false,
-    variant: 'withText',
-    label: 'Test',
-  },
-}
-
-export const DisabledCheckboxWithText: Story = {
-  args: {
-    checked: false,
-    variant: 'withText',
-    disabled: true,
-    label: 'Test',
+    return (
+      <Checkbox
+        {...args}
+        label="Click here"
+        checked={checked}
+        onChange={() => setChecked(!checked)}
+      />
+    )
   },
 }
