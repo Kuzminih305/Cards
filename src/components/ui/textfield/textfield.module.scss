@@ -28,8 +28,8 @@
   }
 
   &:focus-visible {
-    border-color: var(--color-outline-focus);
-    outline: 1px solid var(--color-outline-focus);
+    border-color: var(--color-info-700);
+    outline: 1px solid var(--color-info-700);
   }
 
   &:hover {
