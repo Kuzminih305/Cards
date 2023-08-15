@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import Email from '../../../assets/icons/email'
+import { Email } from '../../../assets/icons'
 import { Button, Card, Typography } from '../../ui'
 
 import s from './check-email.module.scss'
