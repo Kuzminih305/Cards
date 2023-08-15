@@ -5,14 +5,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Button, Card, ControlledCheckbox, ControlledTextField, Typography } from '../../ui'
+import { Button, Card, ControlledTextField, Typography } from '../../ui'
 
-import s from './sign-in.module.scss'
+import s from './recover-password.module.scss'
 
 const schema = z.object({
   email: z.string().email('Invalid email address').nonempty('Enter email'),
-  password: z.string().nonempty('Enter password'),
-  rememberMe: z.boolean().optional(),
 })
 
 type FormType = z.infer<typeof schema>
@@ -21,17 +19,14 @@ type Props = {
   onSubmit: (data: FormType) => void
 }
 
-export const SignIn: FC<Props> = ({ onSubmit }) => {
+export const RecoverPassword: FC<Props> = ({ onSubmit }) => {
   const { control, handleSubmit } = useForm<FormType>({
     mode: 'onSubmit',
     resolver: zodResolver(schema),
     defaultValues: {
       email: '',
-      password: '',
-      rememberMe: false,
     },
   })
-
   const handleFormSubmitted = handleSubmit(onSubmit)
 
   return (
@@ -39,7 +34,7 @@ export const SignIn: FC<Props> = ({ onSubmit }) => {
       <DevTool control={control} />
       <Card className={s.card}>
         <Typography variant="large" className={s.title}>
-          Sign In
+          Forgot your password?
         </Typography>
         <form onSubmit={handleFormSubmitted}>
           <div className={s.form}>
@@ -49,33 +44,19 @@ export const SignIn: FC<Props> = ({ onSubmit }) => {
               name={'email'}
               control={control}
             />
-            <ControlledTextField
-              placeholder={'Password'}
-              label={'Password'}
-              type={'password'}
-              name={'password'}
-              control={control}
-            />
           </div>
-          <ControlledCheckbox
-            className={s.checkbox}
-            label={'Remember me'}
-            control={control}
-            name={'rememberMe'}
-            position={'left'}
-          />
-          <Typography variant="body2" as={'p'} className={s.recoverPasswordLink}>
-            Forgot Password?
+          <Typography variant="body2" as={'p'} className={s.infoInstruction}>
+            Enter your email address and we will send you further instructions
           </Typography>
           <Button className={s.button} fullWidth type={'submit'}>
-            Sign In
+            Send Instructions
           </Button>
         </form>
-        <Typography className={s.caption} variant="body2">
-          {`Don't have an account?`}
+        <Typography className={s.question} variant="body2">
+          {`Did you remember your password?`}
         </Typography>
-        <Typography variant="link1" as={'p'} className={s.signUpLink}>
-          Sign Up
+        <Typography variant="link1" as={'p'} className={s.tryLogging}>
+          Try logging in
         </Typography>
       </Card>
     </>

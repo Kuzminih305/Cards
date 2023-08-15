@@ -19,56 +19,57 @@ const sigUpSchema = z
   })
 
 type SignUpFormShem = z.infer<typeof sigUpSchema>
-export const SignUp = () => {
+type Props = {
+  onSubmit: (data: SignUpFormShem) => void
+}
+export const SignUp = (props: Props) => {
   const { control, handleSubmit } = useForm<SignUpFormShem>({
     resolver: zodResolver(sigUpSchema),
   })
 
-  const onSubmit = (data: SignUpFormShem) => {
-    console.log(data)
-  }
+  const handleFormSubmitted = handleSubmit(props.onSubmit)
 
   return (
-    <Card className={s.signBlock}>
-      <Typography className={s.title} variant={'large'}>
-        Sign Up
-      </Typography>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <DevTool control={control} />
-        <ControlledTextField
-          name={'email'}
-          label={'Email'}
-          type={'email'}
-          placeholder={'enter your email'}
-          control={control}
-          className={s.email}
-        />
-        <ControlledTextField
-          name={'password'}
-          label={'Password'}
-          type={'password'}
-          placeholder={'enter your password'}
-          control={control}
-          className={s.password}
-        />
-        <ControlledTextField
-          name={'confirmPassword'}
-          label={'Confirm password'}
-          type={'password'}
-          placeholder={'enter your password'}
-          control={control}
-          className={s.confirmPassword}
-        />
-        <Button fullWidth={true} className={s.submit} type="submit">
+    <>
+      <DevTool control={control} />
+      <Card className={s.card}>
+        <Typography variant="large" className={s.title}>
           Sign Up
-        </Button>
-      </form>
-      <Typography variant={'body2'} className={s.question}>
-        Already have an account?
-      </Typography>
-      <Button as={'a'} variant={'link'} className={s.signIn}>
-        Sign In
-      </Button>
-    </Card>
+        </Typography>
+        <form onSubmit={handleFormSubmitted}>
+          <div className={s.form}>
+            <ControlledTextField
+              placeholder={'Email'}
+              label={'Email'}
+              name={'email'}
+              control={control}
+            />
+            <ControlledTextField
+              placeholder={'Password'}
+              label={'Password'}
+              type={'password'}
+              name={'password'}
+              control={control}
+            />
+            <ControlledTextField
+              placeholder={'Confirm Password'}
+              label={'Confirm Password'}
+              type={'password'}
+              name={'confirmPassword'}
+              control={control}
+            />
+          </div>
+          <Button className={s.button} fullWidth type={'submit'}>
+            Sign In
+          </Button>
+        </form>
+        <Typography className={s.caption} variant="body2">
+          {`Already have an account?`}
+        </Typography>
+        <Typography variant="link1" as={'p'} className={s.signUpLink}>
+          Sign In
+        </Typography>
+      </Card>
+    </>
   )
 }
