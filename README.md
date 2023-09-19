@@ -1,27 +1,48 @@
-# React + TypeScript + Vite
+# Learning cards
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### The project is under development. The purpose of this project is to help people learn something new
 
-Currently, two official plugins are available:
+https://flaskcards-project.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Below you can see a bit of information about authorisation flow
+![](src/assets/images/signInPage.png)
+![](src/assets/images/signUpPage.png)
+![](src/assets/images/forgotPasswordPage.png)
+![](src/assets/images/checkEmailPage.png)
+![](src/assets/images/createNewPasswordPage.png)
 
-## Expanding the ESLint configuration
+Here you can select the deck you would like to learn, delete or edit. You can also set up filters to search for the deck you want to learn
+![](src/assets/images/mainPage.png)
+![](src/assets/images/addDeck.png)
+![](src/assets/images/deleteDeck.png)
+![](src/assets/images/learnPageFirst.png)
+![](src/assets/images/learnPageSecond.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Also going to the deck page, you can add question and answer cards. As well as the necessary interaction functions (add, edit, delete)
+![](src/assets/images/deckPage.png)
+![](src/assets/images/addNewCard.png)
 
-- Configure the top-level `parserOptions` property like this:
+In this project has a profile page where you can update your photo or change your nickname
+![](src/assets/images/personalInfoPage.png)
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+The project is under development. Some features may be unavailable.
+If you have questions or want to know something, you can write to [me](https://www.linkedin.com/in/aleksandr-avizha/).
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+---
+
+### Technologies:
+
+- React
+- TypeScript
+- Redux-Toolkit
+- RTK-Query
+- React-Hook-Form
+- React-Router-Dom
+- Storybook
+- Reselect
+- React-Toastify
+- Zod
+- Framer-Motion
+- Radix-Ui
+- Eslint
+- Prettier
