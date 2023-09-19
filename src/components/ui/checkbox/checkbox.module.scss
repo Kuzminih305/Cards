@@ -1,62 +1,92 @@
-.container {
-  display: flex;
-  align-items: center;
-}
-
-.label {
+.checkBoxBlock {
   display: flex;
   align-items: center;
 
-  &.disabled {
-    cursor: initial;
-    color: var(--color-dark-100);
+  .checkboxRoot {
+    cursor: pointer;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 1.5rem;
+    height: 1.5rem;
+
+    border: 2px solid var(--color-light-900);
+    border-radius: 0.25rem;
+
+    &:focus {
+      &::before {
+        content: '';
+
+        position: absolute;
+        z-index: -1;
+
+        width: calc(100% + 25px);
+        height: calc(100% + 25px);
+
+        background-color: var(--color-dark-100);
+        border-radius: 50%;
+      }
+    }
+
+    &:disabled {
+      background-color: var(--color-dark-100);
+    }
+
+    &:not(:disabled) {
+      &:hover {
+        &::before {
+          content: '';
+
+          position: absolute;
+          z-index: -1;
+
+          width: calc(100% + 1.5625rem);
+          height: calc(100% + 1.5625rem);
+
+          background-color: var(--color-dark-500);
+          border-radius: 50%;
+        }
+      }
+    }
   }
-}
 
-.root {
-  cursor: pointer;
+  .active {
+    background-color: var(--color-light-100);
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    .checkboxIndicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-dark-900);
 
-  width: 18px;
-  height: 18px;
-
-  background-color: var(--color-dark-400);
-  border: 2px solid var(--color-light-900);
-  border-radius: 2px;
-
-  &:disabled {
-    cursor: initial;
-    border-color: var(--color-dark-100);
+      .icon {
+        width: 1.55rem;
+        height: 1.55rem;
+      }
+    }
   }
 
-  &[data-state='checked']:disabled {
-    background-color: var(--color-checkbox-disabled);
-  }
-}
-
-.buttonWrapper {
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 36px;
-  height: 36px;
-
-  &.disabled {
-    cursor: initial;
+  .unActive {
+    background-color: transparent;
   }
 
-  &.left {
-    margin-left: -9px;
+  .checkboxRoot:disabled .checkboxIndicator {
+    color: var(--color-light-700);
   }
-}
 
-.indicator {
-  width: 40px;
-  height: 18px;
+  .label {
+    cursor: pointer;
+    user-select: none;
+    margin-left: 0.75rem;
+  }
+
+  .labelDisabled {
+    p {
+      color: var(--color-light-700);
+    }
+  }
 }

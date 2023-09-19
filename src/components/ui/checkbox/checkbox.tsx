@@ -1,66 +1,44 @@
-import { FC } from 'react'
+import {FC} from 'react'
 
-import * as CheckboxRadix from '@radix-ui/react-checkbox'
-import * as LabelRadix from '@radix-ui/react-label'
-import { clsx } from 'clsx'
-
-import Check from '../../../assets/icons/check'
-import { Typography } from '../../../components'
+import * as Checkbox from '@radix-ui/react-checkbox'
+import {CheckIcon} from '@radix-ui/react-icons'
 
 import s from './checkbox.module.scss'
 
-export type CheckboxProps = {
-  className?: string
-  checked?: boolean
-  onChange?: (checked: boolean) => void
-  disabled?: boolean
-  required?: boolean
-  label?: string
-  id?: string
-  position?: 'left'
+import {Typography} from '@/components/ui'
+
+export type CheckBoxProps = {
+    onChange?: (checked: boolean) => void
+    disabled?: boolean
+    checked?: boolean
+    variant: 'default' | 'withText'
+    checkBoxText?: string
 }
 
-export const Checkbox: FC<CheckboxProps> = ({
-  checked,
-  onChange,
-  position,
-  disabled,
-  required,
-  label,
-  id,
-  className,
-}) => {
-  const classNames = {
-    container: clsx(s.container, className),
-    buttonWrapper: clsx(s.buttonWrapper, disabled && s.disabled, position === 'left' && s.left),
-    root: s.root,
-    indicator: s.indicator,
-    label: clsx(s.label, disabled && s.disabled),
-  }
-
-  return (
-    <div className={classNames.container}>
-      <LabelRadix.Root asChild>
-        <Typography variant="body2" className={classNames.label} as={'label'}>
-          <div className={classNames.buttonWrapper}>
-            <CheckboxRadix.Root
-              className={classNames.root}
-              checked={checked}
-              onCheckedChange={onChange}
-              disabled={disabled}
-              required={required}
-              id={id}
+export const CheckBox: FC<CheckBoxProps> = ({
+                                                disabled = false,
+                                                onChange,
+                                                checked,
+                                                checkBoxText,
+                                            }) => {
+    return (
+        <div className={s.checkBoxBlock}>
+            <Checkbox.Root
+                className={`${s.checkboxRoot} ${checked ? s.active : s.unActive}`}
+                id="c1"
+                checked={checked}
+                onCheckedChange={onChange}
+                disabled={disabled}
             >
-              {checked && (
-                <CheckboxRadix.Indicator className={classNames.indicator} forceMount>
-                  <Check />
-                </CheckboxRadix.Indicator>
-              )}
-            </CheckboxRadix.Root>
-          </div>
-          {label}
-        </Typography>
-      </LabelRadix.Root>
-    </div>
-  )
+                <Checkbox.Indicator className={s.checkboxIndicator}>
+                    <CheckIcon className={s.icon}/>
+                </Checkbox.Indicator>
+            </Checkbox.Root>
+            {checkBoxText && (
+                <label className={`${s.label} ${disabled ? s.labelDisabled : ''}`} htmlFor="c1">
+                    <Typography variant={'body2'}>{checkBoxText}</Typography>
+                </label>
+            )}
+        </div>
+    )
 }

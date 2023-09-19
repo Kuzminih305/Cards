@@ -1,31 +1,28 @@
-import { FC } from 'react'
 
-import { Email } from '../../../assets/icons'
+
+import { Email } from '@/assets'
 import { Button, Card, Typography } from '../../ui'
 
 import s from './check-email.module.scss'
+import {Link, useParams} from "react-router-dom";
 
-type Props = {
-  email: string
-}
 
-export const CheckEmail: FC<Props> = ({ email }) => {
-  const message = `We've sent an e-mail with instructions to ${email}`
 
-  return (
-    <Card className={s.card}>
-      <Typography variant="large" className={s.title}>
-        Check email
-      </Typography>
-      <div className={s.iconContainer}>
-        <Email />
-      </div>
-      <Typography variant="body2" className={s.instructions}>
-        {message}
-      </Typography>
-      <Button fullWidth as={'a'}>
-        Back to Sign in
-      </Button>
-    </Card>
-  )
+export const CheckEmail = () => {
+    const params = useParams<{ email: string }>()
+
+    return (
+        <Card className={s.checkEmailBlock}>
+            <Typography className={s.title} variant={'large'}>
+                Check Email
+            </Typography>
+            <Email className={s.emailIcon} />
+            <Typography variant={'body2'} className={s.description}>
+                We’ve sent an Email with instructions to {params.email}
+            </Typography>
+            <Button as={Link} to="/login" fullWidth={true} className={s.backToSignIn}>
+                Back to Sign In
+            </Button>
+        </Card>
+    )
 }

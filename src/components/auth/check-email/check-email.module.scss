@@ -1,28 +1,31 @@
-.card {
-  max-width: 413px;
-  padding: 35px 33px 48px;
-}
-
-.title {
-  margin-bottom: 27px;
-  text-align: center;
-}
-
-.iconContainer {
+.checkEmailBlock {
   display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 19px;
-}
+  flex-direction: column;
+  align-items: center;
 
-.instructions {
-  margin-bottom: 65px;
-  color: var(--color-light-900);
-  text-align: center;
-  opacity: 0.5;
-}
+  width: 26.5rem;
+  margin: 2.25rem auto 0;
+  padding: 2.06rem 2.25rem;
 
-.signInLink {
-  display: flex;
-  justify-content: center;
+  .title {
+    margin-bottom: 1.69rem;
+    text-align: center;
+  }
+
+  .emailIcon {
+    width: 6rem;
+    height: 6rem;
+    margin-bottom: 1.19rem;
+  }
+
+  .description {
+    margin-bottom: 4.06rem;
+    color: var(--color-light-900);
+    text-align: center;
+    opacity: 0.5;
+  }
+
+  .backToSignIn {
+    padding: 0.375rem 0;
+  }
 }
